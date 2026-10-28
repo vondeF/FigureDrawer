@@ -14,11 +14,11 @@
         <Label Content="Высота:"/>
         <Slider Minimum="10" Maximum="100"
                 Value="{Binding Height}"/>
-        <TextBox Text="{Binding Height}" IsReadOnly="True"/>
+        <TextBox Text="{Binding Height, StringFormat={}{0:F1}}" IsReadOnly="True"/>
 
         <Label Content="Толщина:"/>
         <Slider Minimum="1" Maximum="20"
                 Value="{Binding Thickness}"/>
-        <TextBox Text="{Binding Thickness}" IsReadOnly="True"/>
+        <TextBox Text="{Binding Thickness, StringFormat={}{0:F1}}" IsReadOnly="True"/>
     </StackPanel>
 </UserControl>
