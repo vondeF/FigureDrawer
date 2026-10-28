@@ -9,7 +9,7 @@
         <Label Content="Основание:"/>
         <Slider Minimum="10" Maximum="100"
                 Value="{Binding BaseWidth}"/>
-        <TextBox Text="{Binding BaseWidth, StringFormat={}{0:F1}" IsReadOnly="True"/>
+        <TextBox Text="{Binding BaseWidth, StringFormat={}{0:F1}}" IsReadOnly="True"/>
 
         <Label Content="Высота:"/>
         <Slider Minimum="10" Maximum="100"
