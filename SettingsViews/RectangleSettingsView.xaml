@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="FigureDrawer.SettingsViews.RectangleSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FigureDrawer.SettingsViews"
+             mc:Ignorable="d">
+    <StackPanel Margin="5">
+        <Label Content="Ширина:"/>
+        <Slider Minimum="1" Maximum="100"
+                Value="{Binding Width}"/>
+        <TextBox Text="{Binding Width}" IsReadOnly="True"/>
+
+        <Label Content="Высота:"/>
+        <Slider Minimum="1" Maximum="100"
+                Value="{Binding Height}"/>
+        <TextBox Text="{Binding Height}" IsReadOnly="True"/>
+
+        <Label Content="Толщина:"/>
+        <Slider Minimum="1" Maximum="20"
+                Value="{Binding Thickness}"/>
+        <TextBox Text="{Binding Thickness}" IsReadOnly="True"/>
+    </StackPanel>
+</UserControl>

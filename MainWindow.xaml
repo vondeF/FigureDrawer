@@ -1,0 +1,98 @@
+﻿<Window x:Class="FigureDrawer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FigureDrawer"
+        mc:Ignorable="d"
+        Title="Figure Drawer" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Style="{StaticResource MaterialDesignWindow}"
+        Icon="/Resources/icon.png">
+    <Grid Background="#FFCECECE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="2" 
+            Content="Figure Drawer — утилита для отрисовки фигур" 
+            Style="{StaticResource HeadLabel}"/>
+        
+        <!-- Выбор фигуры -->
+        <materialDesign:Card Grid.Row="1" 
+                             Style="{StaticResource CustomWhiteCardStyle}">
+            <StackPanel VerticalAlignment="Center">
+                <Label Content="Выберите фигуру:" 
+                       Style="{StaticResource Head2Label}"/>
+                <ComboBox ItemsSource="{Binding AvailableFigures}" 
+                          SelectedItem="{Binding SelectedFigure}" 
+                          DisplayMemberPath="DisplayName" 
+                          Style="{StaticResource CustomComboBoxStyle}"/>
+            </StackPanel> 
+        </materialDesign:Card>
+        
+        <!-- Настройка -->
+        <materialDesign:Card Grid.Row="2" Style="{StaticResource CustomWhiteCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" 
+                       Content="Настройки:" 
+                       Style="{StaticResource Head2Label}"/>
+                <ScrollViewer Grid.Row="1" 
+                              VerticalScrollBarVisibility="Auto" 
+                              HorizontalScrollBarVisibility="Disabled" 
+                              Padding="5">
+                    <ContentControl Content="{Binding CurrentSettings}"/>
+                </ScrollViewer>
+            </Grid>
+        </materialDesign:Card>
+
+        <!-- Рисование -->
+        <Button Grid.Row="3" 
+                Content="Нарисовать фигуру" 
+                Style="{StaticResource CasualButton}"
+                Command="{Binding DrawCommand}"/>
+
+        <!-- Холст -->
+        <materialDesign:Card Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" 
+                             Style="{StaticResource CustomWhiteCardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" 
+                   Content="Холст:" 
+                   Style="{StaticResource Head2Label}"/>
+                
+                <ScrollViewer Grid.Row="1" 
+                    VerticalScrollBarVisibility="Auto" 
+                    HorizontalScrollBarVisibility="Auto" 
+                    Padding="5">
+                    <ItemsControl x:Name="CanvasHost"
+                                  ItemsSource="{Binding CanvasItems}"
+                                  SizeChanged="CanvasHost_SizeChanged">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
